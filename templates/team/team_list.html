@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for team in object_list %}
+<div class="panel">
+    <h3>{{ team.title }}</h3>
+    <p>Created by {{ team.user.username }} on {{ team.created_at }}</p>
+</div>
+{% endfor %}
+{% endblock %}

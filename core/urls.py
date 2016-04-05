@@ -8,4 +8,5 @@ url(r'^user/', include('django.contrib.auth.urls')),
                        url(r'^register/create/$', RegisterCreateView.as_view(), name='register_create'),
                        url(r'^donate/donate/$', DonateView.as_view(), name='donate'),
                        url(r'^team/create/$', TeamCreateView.as_view(), name='team_create'),
+                       url(r'team/$', TeamListView.as_view(), name='team_list'),
                       )
