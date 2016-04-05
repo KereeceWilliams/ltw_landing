@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 
@@ -45,3 +45,8 @@ class TeamListView(ListView):
 class TeamDetailView(DetailView):
     model = Team
     template_name = 'team/team_detail.html'
+
+class TeamUpdateView(UpdateView):
+    model = Team
+    template_name = 'team/team_form.html'
+    fields = ['name', 'description']

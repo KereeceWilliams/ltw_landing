@@ -3,4 +3,7 @@
 <h1>{{ team.name }}</h1>
 <p>{{ team.description }}</p>
 <p>Created by {{ team.user.username }} on {{ team.created_at }}</p>
+{% if team.user == user %}
+<p><a href="{% url 'team_update' pk=team.id %}">Edit team</a></p>
+{% endif %}
 {% endblock %}
