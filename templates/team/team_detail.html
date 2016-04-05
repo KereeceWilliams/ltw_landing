@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ team.name }}</h1>
+<p>{{ team.description }}</p>
+<p>Created by {{ team.user.username }} on {{ team.created_at }}</p>
+{% endblock %}

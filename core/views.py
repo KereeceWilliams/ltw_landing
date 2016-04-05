@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 
@@ -31,15 +31,17 @@ class DonateView(CreateView):
 class TeamCreateView(CreateView):
     model = Team
     template_name = "team/team_form.html"
-    fields = ['name']
+    fields = ['name','description']
     success_url = reverse_lazy('team_list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TeamCreateView, self).form_valid(form)
 
-    from django.views.generic import ListView
-
 class TeamListView(ListView):
     model = Team
     template_name = "team/team_list.html"
+
+class TeamDetailView(DetailView):
+    model = Team
+    template_name = 'team/team_detail.html'
