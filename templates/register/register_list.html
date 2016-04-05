@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-{% for register in object_list %}
-<div class="panel">
-    <h3>{{ register.title }}</h3>
-    <p>Asked by {{ register.user.username }} on {{ register.created_at }}</p>
-</div>
-{% endfor %}
-{% endblock %}
