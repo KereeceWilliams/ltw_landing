@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 
@@ -50,3 +50,8 @@ class TeamUpdateView(UpdateView):
     model = Team
     template_name = 'team/team_form.html'
     fields = ['name', 'description']
+    
+class TeamDeleteView(DeleteView):
+    model = Team
+    template_name = 'team/team_confirm_delete.html'
+    success_url = reverse_lazy('team_list')
