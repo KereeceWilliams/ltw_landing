@@ -51,6 +51,15 @@ class Team(models.Model):
 
   def __unicode__(self):
     return self.name
-  
+
   def get_absolute_url(self):
     return reverse("team_detail", args=[self.id])
+
+class Member(models.Model):
+    team = models.ForeignKey(Team)
+    user = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=300)
+
+    def __unicode__(self):
+        return self.name

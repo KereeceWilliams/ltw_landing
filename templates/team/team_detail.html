@@ -7,4 +7,13 @@
 <p><a href="{% url 'team_update' pk=team.id %}">Edit team</a></p>
 <p><a href="{% url 'team_delete' pk=team.id %}">Delete team</a></p>
 {% endif %}
+{% if members.count > 0 %}
+<h3>{{ members.count }} Member{{ members.count|pluralize }}:</h3>
+{% endif %}
+{% for member in members %}
+<div class="panel">
+    <p>{{ member.name }}</p>
+</div>
+{% endfor %}
+<p><a href="{% url 'member_create' pk=team.id %}">Add member</a></p>
 {% endblock %}

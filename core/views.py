@@ -46,12 +46,32 @@ class TeamDetailView(DetailView):
     model = Team
     template_name = 'team/team_detail.html'
 
+    def get_context_data(self, **kwargs):
+      context = super(TeamDetailView, self).get_context_data(**kwargs)
+      team = Team.objects.get(id=self.kwargs['pk'])
+      members = Member.objects.filter(team=team)
+      context['members'] = members
+      return context
+
 class TeamUpdateView(UpdateView):
     model = Team
     template_name = 'team/team_form.html'
     fields = ['name', 'description']
-    
+
 class TeamDeleteView(DeleteView):
     model = Team
     template_name = 'team/team_confirm_delete.html'
     success_url = reverse_lazy('team_list')
+
+class MemberCreateView(CreateView):
+    model = Member
+    template_name = "member/member_form.html"
+    fields = ['name']
+
+    def get_success_url(self):
+        return self.object.team.get_absolute_url()
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.team = Team.objects.get(id=self.kwargs['pk'])
+        return super(MemberCreateView, self).form_valid(form)
