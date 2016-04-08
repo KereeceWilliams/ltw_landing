@@ -75,3 +75,12 @@ class MemberCreateView(CreateView):
         form.instance.user = self.request.user
         form.instance.team = Team.objects.get(id=self.kwargs['pk'])
         return super(MemberCreateView, self).form_valid(form)
+
+class MemberUpdateView(UpdateView):
+    model = Member
+    pk_url_kwarg = 'member_pk'
+    template_name = 'member/member_form.html'
+    fields = ['name']
+
+    def get_success_url(self):
+        return self.object.team.get_absolute_url()

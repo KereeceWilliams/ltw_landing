@@ -13,6 +13,9 @@
 {% for member in members %}
 <div class="panel">
     <p>{{ member.name }}</p>
+{% if member.user == user %}
+<p><a href="{% url 'member_update' team_pk=team.id member_pk=member.id %}">Edit member</a></p>
+{% endif %}
 </div>
 {% endfor %}
 <p><a href="{% url 'member_create' pk=team.id %}">Add member</a></p>

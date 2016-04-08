@@ -14,4 +14,5 @@ url(r'^user/', include('django.contrib.auth.urls')),
                        url(r'^team/update/(?P<pk>\d+)/$', TeamUpdateView.as_view(), name='team_update'),
                        url(r'^team/delete/(?P<pk>\d+)/$', TeamDeleteView.as_view(), name='team_delete'),
                        url(r'^team/(?P<pk>\d+)/member/create/$', MemberCreateView.as_view(), name='member_create'),
+                       url(r'^team/(?P<team_pk>\d+)/member/update/(?P<member_pk>\d+)/$', MemberUpdateView.as_view(), name='member_update'),
                       )
