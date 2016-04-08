@@ -15,6 +15,7 @@
     <p>{{ member.name }}</p>
 {% if member.user == user %}
 <p><a href="{% url 'member_update' team_pk=team.id member_pk=member.id %}">Edit member</a></p>
+<p><a href="{% url 'member_delete' team_pk=team.id member_pk=member.id %}">Delete member</a></p>
 {% endif %}
 </div>
 {% endfor %}
