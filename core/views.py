@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import PermissionDenied
 from .models import *
 
 class Home(TemplateView):
@@ -84,11 +85,17 @@ class MemberUpdateView(UpdateView):
 
     def get_success_url(self):
         return self.object.team.get_absolute_url()
-      
+
 class MemberDeleteView(DeleteView):
     model = Member
     pk_url_kwarg = 'member_pk'
     template_name = 'member/member_confirm_delete.html'
-    
+
     def get_success_url(self):
         return self.object.team.get_absolute_url()
+
+class UserDetailView(DetailView):
+    model = User
+    slug_field = 'username'
+    template_name = 'user/user_detail.html'
+    context_object_name = 'user_in_view'
