@@ -11,7 +11,7 @@ class Home(TemplateView):
 class RegisterCreateView(CreateView):
     model = Register
     template_name = "register/register_form.html"
-    fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email', 'Date_of_Birth', 'Gender', 'Shirt_Size', 'Waiver', 'Emergency_Contact_First_Name', 'Emergency_Contact_Last_Name', 'Emergency_Contact_Phone_Number']
+    fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email', 'Date_of_Birth', 'Gender', 'Shirt_Size', 'Waiver', 'Emergency_Contact_First_Name', 'Emergency_Contact_Last_Name', 'Emergency_Contact_Phone_Number', 'cardholders_name', 'credit_card_number', 'card_cvv', 'expiration_date']
     success_url = reverse_lazy('register_list')
 
     def form_valid(self, form):
@@ -59,10 +59,22 @@ class TeamUpdateView(UpdateView):
     template_name = 'team/team_form.html'
     fields = ['name', 'description']
 
+    def get_object(self, *args, **kwargs):
+        object = super(TeamUpdateView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+            raise PermissionDenied()
+        return object
+
 class TeamDeleteView(DeleteView):
     model = Team
     template_name = 'team/team_confirm_delete.html'
     success_url = reverse_lazy('team_list')
+
+    def get_object(self, *args, **kwargs):
+        object = super(TeamDeleteView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+            raise PermissionDenied()
+        return object
 
 class MemberCreateView(CreateView):
     model = Member
@@ -86,6 +98,12 @@ class MemberUpdateView(UpdateView):
     def get_success_url(self):
         return self.object.team.get_absolute_url()
 
+    def get_object(self, *args, **kwargs):
+        object = super(MemberUpdateView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+          raise PermissionDenied()
+        return object
+
 class MemberDeleteView(DeleteView):
     model = Member
     pk_url_kwarg = 'member_pk'
@@ -94,8 +112,38 @@ class MemberDeleteView(DeleteView):
     def get_success_url(self):
         return self.object.team.get_absolute_url()
 
+    def get_object(self, *args, **kwargs):
+        object = super(MemberDeleteView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+            raise PermissionDenied()
+        return object
+
 class UserDetailView(DetailView):
     model = User
     slug_field = 'username'
     template_name = 'user/user_detail.html'
     context_object_name = 'user_in_view'
+
+    def get_context_data(self, **kwargs):
+      context = super(UserDetailView, self).get_context_data(**kwargs)
+      user_in_view = User.objects.get(username=self.kwargs['slug'])
+      team = Team.objects.filter(user=user_in_view)
+      context['team'] = team
+      member = Member.objects.filter(user=user_in_view)
+      context['member'] = member
+      return context
+
+class UserUpdateView(UpdateView):
+    model = User
+    slug_field = "username"
+    template_name = "user/user_form.html"
+    fields = ['email', 'first_name', 'last_name']
+    
+    def get_success_url(self):
+        return reverse('user_detail', args=[self.request.user.username])
+
+    def get_object(self, *args, **kwargs):
+        object = super(UserUpdateView, self).get_object(*args, **kwargs)
+        if object != self.request.user:
+            raise PermissionDenied()
+        return object

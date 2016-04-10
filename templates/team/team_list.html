@@ -2,8 +2,8 @@
 {% block content %}
 {% for team in object_list %}
 <div class="panel">
-    <h3><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></h3>
-    <p>Created by {{ team.user.username }} on {{ team.created_at }}</p>
+   <h3><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></h3>
+   <p>Created by <a href="{% url 'user_detail' slug=team.user.username %}">{{ team.user.username }}</a> on {{ team.created_at }}</p>
 </div>
 {% endfor %}
 {% endblock %}

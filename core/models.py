@@ -22,6 +22,10 @@ class Register(models.Model):
   Emergency_Contact_First_Name = models.CharField(max_length=300)
   Emergency_Contact_Last_Name = models.CharField(max_length=300)
   Emergency_Contact_Phone_Number = models.CharField(max_length=300)
+  cardholders_name = models.CharField(max_length=300)
+  credit_card_number = models.CharField(max_length=300)
+  card_cvv = models.CharField(max_length=300)
+  expiration_date = models.CharField(max_length=300)
   created_at = models.DateTimeField(auto_now_add=True)
   user = models.ForeignKey(User)
 

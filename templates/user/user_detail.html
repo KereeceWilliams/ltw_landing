@@ -4,4 +4,16 @@
 <p>Email address: {{ user_in_view.email }}</p>
 <p>First name: {{ user_in_view.first_name }}</p>
 <p>Last name: {{ user_in_view.last_name }}</p>
+{% if user_in_view == user %}
+<p><a href="{% url 'user_update' slug=user.username %}">Edit profile</a></p>
+{% endif %}
+<h3>Team ({{ team.count }})</h3>
+{% for team in teams %}
+    <p><a href="{{ team.get_absolute_url }}">{{ team.title }}</a></p>
+{% endfor %}
+<h3>Members ({{ member.count }})</h3>
+{% for member in members %}
+    <p><a href="{{ member.team.get_absolute_url }}">{{ member.team.title  }}</a></p>
+    <p>> {{ member.text }}</p>
+{% endfor %}
 {% endblock %}

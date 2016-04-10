@@ -18,4 +18,5 @@ url(r'^user/', include('django.contrib.auth.urls')),
                        url(r'^team/(?P<team_pk>\d+)/member/update/(?P<member_pk>\d+)/$', login_required(MemberUpdateView.as_view()), name='member_update'),
                        url(r'^team/(?P<team_pk>\d+)/member/delete/(?P<member_pk>\d+)/$', login_required(MemberDeleteView.as_view()), name='member_delete'),
                        url(r'^user/(?P<slug>\w+)/$', login_required(UserDetailView.as_view()), name='user_detail'),
+                       url(r'^user/update/(?P<slug>\w+)/$', login_required(UserUpdateView.as_view()), name='user_update'),
                       )
