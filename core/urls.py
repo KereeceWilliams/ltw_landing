@@ -19,4 +19,7 @@ url(r'^user/', include('django.contrib.auth.urls')),
                        url(r'^team/(?P<team_pk>\d+)/member/delete/(?P<member_pk>\d+)/$', login_required(MemberDeleteView.as_view()), name='member_delete'),
                        url(r'^user/(?P<slug>\w+)/$', login_required(UserDetailView.as_view()), name='user_detail'),
                        url(r'^user/update/(?P<slug>\w+)/$', login_required(UserUpdateView.as_view()), name='user_update'),
+                       url(r'^user/delete/(?P<slug>\w+)/$', login_required(UserDeleteView.as_view()), name='user_delete'),
+                       url(r'^search/$', login_required(SearchTeamListView.as_view()), name='search'),
+               url(r'^vendor/create/$', VendorCreateView.as_view(), name='vendor_create'),        
                       )

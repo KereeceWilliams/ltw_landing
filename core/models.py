@@ -67,3 +67,17 @@ class Member(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Vendor(models.Model):
+  First_Name = models.CharField(max_length=300)
+  Last_Name = models.CharField(max_length=300)
+  Street = models.CharField(max_length=300)
+  City = models.CharField(max_length=300)
+  State = models.CharField(max_length=300)
+  Country = models.CharField(max_length=300)
+  Zip_Code = models.CharField(max_length=300)
+  Phone_Number = models.CharField(max_length=300)
+  Email = models.CharField(max_length=300)
+  credit_card_number = models.CharField(max_length=300)
+  expiration_date = models.CharField(max_length=300)
+  card_cvv = models.CharField(max_length=300)

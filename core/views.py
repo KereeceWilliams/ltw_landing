@@ -42,6 +42,7 @@ class TeamCreateView(CreateView):
 class TeamListView(ListView):
     model = Team
     template_name = "team/team_list.html"
+    paginate_by = 5
 
 class TeamDetailView(DetailView):
     model = Team
@@ -138,7 +139,7 @@ class UserUpdateView(UpdateView):
     slug_field = "username"
     template_name = "user/user_form.html"
     fields = ['email', 'first_name', 'last_name']
-    
+
     def get_success_url(self):
         return reverse('user_detail', args=[self.request.user.username])
 
@@ -147,3 +148,34 @@ class UserUpdateView(UpdateView):
         if object != self.request.user:
             raise PermissionDenied()
         return object
+
+class UserDeleteView(DeleteView):
+    model = User
+    slug_field = "username"
+    template_name = 'user/user_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('logout')
+
+    def get_object(self, *args, **kwargs):
+        object = super(UserDeleteView, self).get_object(*args, **kwargs)
+        if object != self.request.user:
+            raise PermissionDenied()
+        return object
+
+    def delete(self, request, *args, **kwargs):
+        user = super(UserDeleteView, self).get_object(*args)
+        user.is_active = False
+        user.save()
+        return redirect(self.get_success_url())
+      
+class SearchTeamListView(ListView):
+    def get_queryset(self):
+        incoming_query_string = self.request.GET.get('query','')
+        return Team.objects.filter(title__icontains=incoming_query_string)
+      
+class VendorCreateView(CreateView):
+    model = Vendor
+    template_name = "vendor/vendor_form.html"
+    fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email','credit_card_number', 'expiration_date','card_cvv',]
+    success_url = reverse_lazy('home')

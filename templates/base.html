@@ -49,12 +49,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-
+<form action="{% url 'search' %}" class="navbar-form navbar-left" method="get">
+                    <input type="text" placeholder="Search" class="form-control" name="query">
+                  </form>
                   <li><a href="{% url 'donate' %}">Donate</a></li>
 
 {% if user.is_authenticated %}
 
-                   <li><a href="{% url 'register_create' %}">Register</a></li>
+
+                  <li><a href="{% url 'register_create' %}">Register</a></li>
+                  <li><a href="{% url 'vendor_create' %}">Vendor</a></li>
                   <li><a href="{% url 'team_create' %}">Create Team</a></li>
                   <li><a href="{% url 'team_list' %}">Teams</a></li>
                   <li><a href="{% url 'user_detail' slug=user.username %}">Profile</a></li>

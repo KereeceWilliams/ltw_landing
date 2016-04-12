@@ -5,5 +5,19 @@
    <h3><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></h3>
    <p>Created by <a href="{% url 'user_detail' slug=team.user.username %}">{{ team.user.username }}</a> on {{ team.created_at }}</p>
 </div>
+{% empty %}
+<p>No results found.</p>
 {% endfor %}
+{% if is_paginated %}
+<nav>
+    <ul class="pager">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}
