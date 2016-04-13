@@ -21,5 +21,9 @@ url(r'^user/', include('django.contrib.auth.urls')),
                        url(r'^user/update/(?P<slug>\w+)/$', login_required(UserUpdateView.as_view()), name='user_update'),
                        url(r'^user/delete/(?P<slug>\w+)/$', login_required(UserDeleteView.as_view()), name='user_delete'),
                        url(r'^search/$', login_required(SearchTeamListView.as_view()), name='search'),
-               url(r'^vendor/create/$', VendorCreateView.as_view(), name='vendor_create'),        
+                       url(r'^vendor/create/$', VendorCreateView.as_view(), name='vendor_create'),
+                       url(r'^volunteer/create/$', VolunteerCreateView.as_view(), name='volunteer_create'),
+                       url(r'^success/$', Success.as_view(), name='success'),
+                       url(r'^contact_us/create/$', login_required(Contact_Us.as_view()), name='contact_us'),
+                        url(r'^about_us/$', About_Us.as_view(), name='about_us')
                       )

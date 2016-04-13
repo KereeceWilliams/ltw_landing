@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-success">
+    <h1> Waiver Form </h1>
+    <br>
+    <p> Love the World has no liability for any damage that is incurred at this event. Hikers are responsible for nny loss of property. Hikers are also solely responsible for any ijuries sustained during the hike or on event grounds. Love the World takes no responsibility for these incidences. </p>
+    <br>
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="checkboxes"></label>
+  <div class="col-md-4">
+  <div class="checkbox">
+    <label for="checkboxes-0">
+      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+      Yes, I agree to the terms of conditions.
+    </label>
+	</div>
+  <div class="checkbox">
+    <label for="checkboxes-1">
+      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
+      No, I do not agree with the terms of condition.
+    </label>
+	</div>
+  </div>
+</div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+{% endblock %}

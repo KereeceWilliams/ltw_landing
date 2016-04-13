@@ -3,34 +3,8 @@
 <div class="intro-header">
   <div class="container">
     <div class="intro-message">
-{% if user.is_authenticated %}
-
-    <h1>Welcome back!</h1>
-
-{% else %}
-
-    <h1>Welcome to Love the World</h1>
-    <p><a class="btn btn-lg btn-primary" href="{% url 'registration_register'   %}">Sign up</a></p>
-      
-<p>If you would like to have a slot at our event, sign up below! </p>
-<p><a href="{% url 'question_create' %}" class="btn btn-lg btn-primary">Sign Up</a></p>
-{% endif %}
+      <h1>Welcome to Love the World</h1>
     </div>
   </div>
 </div>
-<br>
-<br>
-<div class="container">
-  <h2> 26,834 and counting... <h/2>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    60%
-  </div>
-    </div>
-    <p><a class="btn btn-lg btn-primary" href="{% url 'donate'  %}">Donate</a></p>
-    <br>
-    <div class="container">
-     <h1> What is Love the World? </h1>
-  <p> Love the World is an organization that is dedicated to making the world heathier, happier and more sustainable. We beieve that it is our job to protect and preserve the earth and it's natural habitats. We partner and sponser various charities that are also dedicaated to our cause supporting each other. </p>
-    </div>
 {% endblock %}

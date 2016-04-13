@@ -12,7 +12,7 @@ class RegisterCreateView(CreateView):
     model = Register
     template_name = "register/register_form.html"
     fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email', 'Date_of_Birth', 'Gender', 'Shirt_Size', 'Waiver', 'Emergency_Contact_First_Name', 'Emergency_Contact_Last_Name', 'Emergency_Contact_Phone_Number', 'cardholders_name', 'credit_card_number', 'card_cvv', 'expiration_date']
-    success_url = reverse_lazy('register_list')
+    success_url = reverse_lazy('success')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -168,14 +168,32 @@ class UserDeleteView(DeleteView):
         user.is_active = False
         user.save()
         return redirect(self.get_success_url())
-      
+
 class SearchTeamListView(ListView):
     def get_queryset(self):
         incoming_query_string = self.request.GET.get('query','')
         return Team.objects.filter(title__icontains=incoming_query_string)
-      
+
 class VendorCreateView(CreateView):
     model = Vendor
     template_name = "vendor/vendor_form.html"
     fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email','credit_card_number', 'expiration_date','card_cvv',]
     success_url = reverse_lazy('home')
+
+class VolunteerCreateView(CreateView):
+    model = Volunteer
+    template_name = "volunteer/volunteer_form.html"
+    fields = ['First_Name', 'Last_Name', 'Street', 'City', 'State', 'Country', 'Zip_Code', 'Phone_Number', 'Email','visibility']
+    success_url = reverse_lazy('home')
+
+class Success(TemplateView):
+  template_name = "success.html"
+
+class Contact_Us(CreateView):
+    model = Contact_Us
+    template_name = "contact_us/contact_us.html"
+    fields = ['name', 'email', 'question', 'description']
+    success_url = reverse_lazy('success')
+
+class About_Us(TemplateView):
+  template_name = "about_us.html"

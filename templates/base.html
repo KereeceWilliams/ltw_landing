@@ -52,13 +52,24 @@
 <form action="{% url 'search' %}" class="navbar-form navbar-left" method="get">
                     <input type="text" placeholder="Search" class="form-control" name="query">
                   </form>
-                  <li><a href="{% url 'donate' %}">Donate</a></li>
+
+                  <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                  <li><a href="{% url 'about_us' %}">About Us</a></li>
 
 {% if user.is_authenticated %}
 
-
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Get Involved
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li><a href="{% url 'register_create' %}">Register</a></li>
+                     <li><a href="{% url 'donate' %}">Donate</a></li>
                   <li><a href="{% url 'vendor_create' %}">Vendor</a></li>
+                  <li><a href="{% url 'volunteer_create' %}">Volunteer</a></li>
+    </ul>
+</div>
                   <li><a href="{% url 'team_create' %}">Create Team</a></li>
                   <li><a href="{% url 'team_list' %}">Teams</a></li>
                   <li><a href="{% url 'user_detail' slug=user.username %}">Profile</a></li>

@@ -4,6 +4,12 @@ from django.core.urlresolvers import reverse
 
 from django.db import models
 
+VISIBILITY_CHOICES = (
+(0, '--Select--'),
+(1, 'Promote event'),
+(2, 'Set Up'),
+(3, 'Service hikers'),
+)
 # Create your models here.
 class Register(models.Model):
   First_Name = models.CharField(max_length=300)
@@ -81,3 +87,22 @@ class Vendor(models.Model):
   credit_card_number = models.CharField(max_length=300)
   expiration_date = models.CharField(max_length=300)
   card_cvv = models.CharField(max_length=300)
+
+class Volunteer(models.Model):
+  First_Name = models.CharField(max_length=300)
+  Last_Name = models.CharField(max_length=300)
+  Street = models.CharField(max_length=300)
+  City = models.CharField(max_length=300)
+  State = models.CharField(max_length=300)
+  Country = models.CharField(max_length=300)
+  Zip_Code = models.CharField(max_length=300)
+  Phone_Number = models.CharField(max_length=300)
+  Email = models.CharField(max_length=300)
+  visibility = models.IntegerField(choices=VISIBILITY_CHOICES, default=0)
+
+class Contact_Us(models.Model):
+  name = models.CharField(max_length=70)
+  email = models.EmailField(max_length=70)
+  question = models.CharField(max_length=300)
+  description = models.TextField(null=True, blank=True)
+  created_at = models.DateTimeField(auto_now_add=True)
