@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="jumbotron">
+
+<div class="container" >
+<div style="padding-bottom:20px" align="center">     
+      <h2> Frequently Asked Questions </h2>
+</div>
+        <h4>1. Can I still donate if I don’t plan on participating in the hike?</h4>
+        <p> - Yes, you can sign up as a “virtual hiker”. Even though you don’t participate in the hike, you will still receive a t-shirt.</p>
+        <h4>2. If I am a vendor and have just applied to sell my goods at the hike, how long do I have to wait to hear back if my application has been accepted or rejected?</h4>
+        <p>-If you apply to be a vendor, you should be hearing back from us in 1-2 weeks with an official decision.</p>
+        <h4>3. If I am a team leader, do I need to register my teammates?</h4>
+        <p>-If you are a team leader and have created a team, you will need your teammates to register on our website, and then you will need to manually add their names to your team.</p>
+        <h4>4. If I sign up this year, will I need to sign up again next year, or will my information be saved?</h4>
+        <p>-If you sign up this year, you will not need to sign up again next year, but you will need to rejoin a team, as that particular bit of information will not be saved.</p>
+</div>
+<div style="padding-top:50px" align="center">
+        <p>If you have any further questions please ask us though our contact form below</p>
+</div>
+<div class="span7 text-center >
+    <a <a href="{% url 'contact_us' %}"> <button type="submit" class="btn btn-primary">Contact Us</button></a>
+</div>
+</div>
+  
+<iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d52455.32666745476!2d-98.56690540676459!3d34.74405601735437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x87acfcd42346881b%3A0x62b6b01c6cbc6417!2sMt+Scott%2C+Oklahoma+73507!3m2!1d34.7439925!2d-98.53188569999999!5e0!3m2!1sen!2sus!4v1460748877366" width="1150" height="400" frameborder="0" style="border:0" allowfullscreen></iframe> 
+
+{% endblock %}

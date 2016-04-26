@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="jumbotron">
+
+<div class="container" align="center"> 
+      <h1> Thank You! </h1>
+</div>
+<div class="container" align="center" style="padding-bottom:30px">    
+<img src=/static/image/happydog.jpg class="img-thumbnail" alt="Thank You!" width="600" height="600"  />
+</div>
+      <p> On behalf of <a target="_blank" href="http://www.bmhshelter.com">Bring Me Home Animal Shelter</a> and Love the World, we would like to thank you for your donation. </p>
+      <p>Bring Me Home Animal Shelter relies on the generosity of donors such as yourself and is grateful for your support.</p>
+      <p>Thank you very much for your efforts!</p>
+      
+      <p>For more information on how Love the World operates, please visit the following link: <a target="_blank" href="{% url 'about_us' %}">About Us</a></p>
+      <p>For more information on Bring Me Home Animal Shelter, please visit the following link: <a target="_blank" href="http://www.bmhshelter.com">Click Me</a> </p>
+      <p>Have a splendid day, and we hope to see you again in the future!</p>
+<div class="span7 text-center style="padding-bottom:50px"">
+<a href="{% url 'home' %}"> <button type="submit" class="btn btn-primary">Home</button></a>
+  </div>
+  </div>
+  
+  <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d52455.32666745476!2d-98.56690540676459!3d34.74405601735437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x87acfcd42346881b%3A0x62b6b01c6cbc6417!2sMt+Scott%2C+Oklahoma+73507!3m2!1d34.7439925!2d-98.53188569999999!5e0!3m2!1sen!2sus!4v1460748877366" width="1150" height="400" frameborder="0" style="border:0" allowfullscreen></iframe> 
+
+{% endblock %}

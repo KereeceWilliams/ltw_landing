@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'registration',
     'django.contrib.sites',
     'bootstrap3',
+    'formtools',
 ]
 
 MIDDLEWARE_CLASSES = [
